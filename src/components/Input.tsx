@@ -24,13 +24,6 @@ export const Input = (props: InputProps) => {
     onChange,
   };
 
-  const InputComponent = () =>
-    type === "textarea" ? (
-      <textarea {...inputProps}></textarea>
-    ) : (
-      <input type={type} {...inputProps} />
-    );
-
   return (
     <div className={className}>
       <label
@@ -40,7 +33,11 @@ export const Input = (props: InputProps) => {
         {label}
         {required && <span className="text-red-500"> *</span>}
       </label>
-      <InputComponent />
+      {type === "textarea" ? (
+        <textarea {...inputProps}></textarea>
+      ) : (
+        <input type={type} {...inputProps} />
+      )}
     </div>
   );
 };
