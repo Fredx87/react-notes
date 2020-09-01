@@ -2,21 +2,40 @@ import React from "react";
 
 export interface InputProps {
   type?: "text" | "email" | "password" | "textarea";
+  label: string;
+  id: string;
+  required?: boolean;
 }
 
 export const Input = (props: InputProps) => {
-  const { type } = props;
+  const { type, label, id, required } = props;
 
-  const className =
+  const inputClassName =
     "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline";
 
   const inputProps = {
-    className,
+    className: inputClassName,
+    id,
+    required,
   };
 
-  return type === "textarea" ? (
-    <textarea {...inputProps}></textarea>
-  ) : (
-    <input type={type} {...inputProps} />
+  const InputComponent = () =>
+    type === "textarea" ? (
+      <textarea {...inputProps}></textarea>
+    ) : (
+      <input type={type} {...inputProps} />
+    );
+
+  return (
+    <div>
+      <label
+        className="block text-gray-700 text-sm font-bold mb-2"
+        htmlFor={id}
+      >
+        {label}
+        {required && <span className="text-red-500"> *</span>}
+      </label>
+      <InputComponent />
+    </div>
   );
 };

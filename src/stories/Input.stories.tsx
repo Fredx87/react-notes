@@ -5,6 +5,10 @@ import { Input, InputProps } from "../components/Input";
 export default {
   title: "Input",
   component: Input,
+  args: {
+    label: "Label:",
+    id: "input-id",
+  },
 };
 
 const Template: Story<InputProps> = (args) => <Input {...args} />;
