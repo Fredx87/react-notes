@@ -1,14 +1,16 @@
-import React from "react";
+import React, { ChangeEventHandler } from "react";
 
 export interface InputProps {
   type?: "text" | "email" | "password" | "textarea";
   label: string;
   id: string;
   required?: boolean;
+  value?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
 }
 
 export const Input = (props: InputProps) => {
-  const { type, label, id, required } = props;
+  const { type, label, id, required, value, onChange } = props;
 
   const inputClassName =
     "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline";
@@ -17,6 +19,8 @@ export const Input = (props: InputProps) => {
     className: inputClassName,
     id,
     required,
+    value,
+    onChange,
   };
 
   const InputComponent = () =>

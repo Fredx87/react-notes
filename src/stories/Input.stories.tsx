@@ -8,6 +8,7 @@ export default {
   args: {
     label: "Label:",
     id: "input-id",
+    value: "my value",
   },
 };
 
