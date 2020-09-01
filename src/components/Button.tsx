@@ -1,10 +1,12 @@
 import React from "react";
+import { Spinner } from "./Spinner";
 
 type ButtonVariant = "primary" | "secondary";
 
 interface ButtonProps {
   variant: ButtonVariant;
-  disabled?: boolean;
+  isDisabled?: boolean;
+  isLoading?: boolean;
 }
 
 function getClassName(variant: ButtonVariant, disabled?: boolean): string {
@@ -25,13 +27,16 @@ function getClassName(variant: ButtonVariant, disabled?: boolean): string {
 }
 
 export const Button: React.FC<ButtonProps> = (props) => {
-  const { variant, disabled, children } = props;
+  const { variant, isDisabled, isLoading, children } = props;
+
+  const disabled = isDisabled || isLoading;
 
   const cursor = disabled ? "pointer-events-none" : "pointer-events-auto";
   const className = `px-4 py-2 ${cursor} ${getClassName(variant, disabled)}`;
 
   return (
     <button disabled={disabled} className={className}>
+      {isLoading && <Spinner />}
       {children}
     </button>
   );
