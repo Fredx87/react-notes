@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AppThunk } from "../../store";
+import { authPromise } from "./authPromise";
 
 interface AuthState {
   username?: string;
@@ -38,5 +40,22 @@ const authSlice = createSlice({
   },
 });
 
-export const { setLoggedOut } = authSlice.actions;
+export const {
+  setLoading,
+  setLogged,
+  setLoggedOut,
+  setLoginError,
+} = authSlice.actions;
 export default authSlice.reducer;
+
+export const login = (username: string, password: string): AppThunk => async (
+  dispatch
+) => {
+  try {
+    dispatch(setLoading());
+    const result = await authPromise(username, password);
+    dispatch(setLogged(result));
+  } catch (e) {
+    dispatch(setLoginError(e));
+  }
+};
