@@ -3,7 +3,7 @@ import { Spinner } from "./Spinner";
 
 type ButtonVariant = "primary" | "secondary";
 
-interface ButtonProps {
+export interface ButtonProps {
   variant: ButtonVariant;
   isDisabled?: boolean;
   isLoading?: boolean;
