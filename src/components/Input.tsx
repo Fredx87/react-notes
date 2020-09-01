@@ -7,13 +7,14 @@ export interface InputProps {
   required?: boolean;
   value?: string;
   onChange?: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  className?: string;
 }
 
 export const Input = (props: InputProps) => {
-  const { type, label, id, required, value, onChange } = props;
+  const { type, label, id, required, value, onChange, className } = props;
 
-  const inputClassName =
-    "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline";
+  const inputClassName = `shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight
+    focus:outline-none focus:shadow-outline`;
 
   const inputProps = {
     className: inputClassName,
@@ -31,7 +32,7 @@ export const Input = (props: InputProps) => {
     );
 
   return (
-    <div>
+    <div className={className}>
       <label
         className="block text-gray-700 text-sm font-bold mb-2"
         htmlFor={id}
