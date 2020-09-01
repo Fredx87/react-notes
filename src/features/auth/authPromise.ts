@@ -9,6 +9,6 @@ export function authPromise(
       } else {
         reject("Invalid username or password");
       }
-    });
+    }, 1000);
   });
 }
