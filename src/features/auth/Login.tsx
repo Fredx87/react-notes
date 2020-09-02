@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { Alert } from "../../components/Alert";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
@@ -10,8 +11,17 @@ import { login } from "./authSlice";
 export const Login = () => {
   const [username, usernameChange] = useTextInput("");
   const [password, passwordChange] = useTextInput("");
+  let history = useHistory();
   const dispatch = useDispatch();
-  const { isLoading, error } = useSelector((state: RootState) => state.auth);
+  const { user, isLoading, error } = useSelector(
+    (state: RootState) => state.auth
+  );
+
+  useEffect(() => {
+    if (user) {
+      history.replace("/");
+    }
+  }, [user, history]);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,7 +31,7 @@ export const Login = () => {
   return (
     <form
       onSubmit={onSubmit}
-      className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-sm"
+      className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-sm mx-auto mt-10"
     >
       {error && (
         <div className="mb-6">
