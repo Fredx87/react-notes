@@ -17,8 +17,8 @@ export const User = () => {
   };
 
   return user ? (
-    <div>
-      <span className="mr-3">
+    <div className="space-x-2">
+      <span>
         Welcome, {user.firstName} {user.lastName}
       </span>
       <Button variant="link" onClick={logout}>
