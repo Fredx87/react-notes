@@ -11,7 +11,7 @@ import { login } from "./authSlice";
 export const Login = () => {
   const [username, usernameChange] = useTextInput("");
   const [password, passwordChange] = useTextInput("");
-  let history = useHistory();
+  const history = useHistory();
   const dispatch = useDispatch();
   const { user, isLoading, error } = useSelector(
     (state: RootState) => state.auth
