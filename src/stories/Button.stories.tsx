@@ -21,3 +21,8 @@ export const Secondary = Template.bind({});
 Secondary.args = {
   variant: "secondary" as const,
 };
+
+export const Link = Template.bind({});
+Link.args = {
+  variant: "link" as const,
+};
