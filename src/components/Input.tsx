@@ -34,7 +34,7 @@ export const Input = (props: InputProps) => {
         {required && <span className="text-red-500"> *</span>}
       </label>
       {type === "textarea" ? (
-        <textarea {...inputProps}></textarea>
+        <textarea rows={10} {...inputProps}></textarea>
       ) : (
         <input type={type} {...inputProps} />
       )}
