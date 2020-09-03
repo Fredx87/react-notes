@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
-import { NoteEditor } from "./NoteEditor";
+import { NoteCreate } from "./NoteCreate";
+import { NoteEdit } from "./NoteEdit";
 import { NotesList } from "./NotesList";
 
 export const NotesContainer = () => {
@@ -13,10 +14,10 @@ export const NotesContainer = () => {
         <NotesList />
       </Route>
       <Route path={`${path}/create`}>
-        <NoteEditor />
+        <NoteCreate />
       </Route>
-      <Route path={`${path}/:noteId`}>
-        <NoteEditor />
+      <Route path={`${path}/:noteId/edit`}>
+        <NoteEdit />
       </Route>
     </Switch>
   );

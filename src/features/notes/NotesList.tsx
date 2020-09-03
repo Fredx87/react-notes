@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useHistory, useRouteMatch } from "react-router-dom";
+import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import { Button } from "../../components/Button";
 import { notesSelectors } from "./notesSlice";
 
@@ -31,6 +31,14 @@ export const NotesList = () => {
                 <h2 className="text-xl font-bold">{note.title}</h2>
               </div>
               <p className="whitespace-pre-line">{note.content}</p>
+              <div className="text-right">
+                <Link
+                  to={`${url}/${note.id}/edit`}
+                  className="text-sm text-gray-600 underline"
+                >
+                  Edit
+                </Link>
+              </div>
             </div>
           </div>
         ))}

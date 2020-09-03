@@ -1,4 +1,3 @@
-import { nanoid } from "@reduxjs/toolkit";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -7,22 +6,28 @@ import { Input } from "../../components/Input";
 import { useTextInput } from "../../hooks/useTextInput";
 import { Note, upsertNote } from "./notesSlice";
 
-export const NoteEditor = () => {
+export interface NoteFormProps {
+  note: Note;
+}
+
+export const NoteForm = (props: NoteFormProps) => {
+  const { note } = props;
+
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [title, titleChange] = useTextInput("");
-  const [content, contentChange] = useTextInput("");
+  const [title, titleChange] = useTextInput(note.title);
+  const [content, contentChange] = useTextInput(note.content);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const note: Note = {
-      id: nanoid(),
+    const toSave: Note = {
+      id: note.id,
       timestamp: Date.now(),
       title,
       content,
     };
-    dispatch(upsertNote(note));
+    dispatch(upsertNote(toSave));
     goBack();
   };
 
