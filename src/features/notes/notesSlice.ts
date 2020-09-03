@@ -9,7 +9,7 @@ export interface Note {
 }
 
 const notesAdapter = createEntityAdapter<Note>({
-  sortComparer: (a, b) => a.timestamp - b.timestamp,
+  sortComparer: (a, b) => b.timestamp - a.timestamp,
 });
 
 const notesSlice = createSlice({
