@@ -6,7 +6,6 @@ import { NotesList } from "./NotesList";
 
 export const NotesContainer = () => {
   const { path } = useRouteMatch();
-  console.log("path", path);
 
   return (
     <Switch>
