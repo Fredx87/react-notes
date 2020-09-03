@@ -3,13 +3,13 @@ import { RootState } from "../../rootReducer";
 
 export interface Note {
   id: string;
-  date: Date;
+  timestamp: number;
   title: string;
   content: string;
 }
 
 const notesAdapter = createEntityAdapter<Note>({
-  sortComparer: (a, b) => a.date.valueOf() - b.date.valueOf(),
+  sortComparer: (a, b) => a.timestamp - b.timestamp,
 });
 
 const notesSlice = createSlice({
