@@ -1,16 +1,23 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useRouteMatch } from "react-router-dom";
 import { Button } from "../../components/Button";
-import { notesSelectors } from "./notesSlice";
+import { deleteNote, notesSelectors } from "./notesSlice";
 
 export const NotesList = () => {
   const { url } = useRouteMatch();
   const history = useHistory();
+  const dispatch = useDispatch();
   const notes = useSelector(notesSelectors.selectAll);
 
   const createNewNote = () => {
     history.push(`${url}/create`);
+  };
+
+  const onDelete = (id: string) => {
+    if (window.confirm("Are your sure that you want to delete the note?")) {
+      dispatch(deleteNote(id));
+    }
   };
 
   return (
@@ -31,13 +38,21 @@ export const NotesList = () => {
                 <h2 className="text-xl font-bold">{note.title}</h2>
               </div>
               <p className="whitespace-pre-line">{note.content}</p>
-              <div className="text-right">
+              <div className="text-right space-x-2">
                 <Link
                   to={`${url}/${note.id}/edit`}
-                  className="text-sm text-gray-600 underline"
+                  className="text-green-500 underline focus:outline-none"
                 >
                   Edit
                 </Link>
+                <Button
+                  variant="link"
+                  onClick={() => {
+                    onDelete(note.id);
+                  }}
+                >
+                  Delete
+                </Button>
               </div>
             </div>
           </div>
